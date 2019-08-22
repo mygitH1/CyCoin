@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="jumbotron">
+            <h1 class="display-4">Welcome to CyCoin</h1>
+            <p class="lead">Your Source for Crypto Currency and Blockchain News!</p>
+    </div>
+
+<!-- Latest Price Data Table here below -->
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="bg-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">24h High</th>
+        <th scope="col">24h Low</th>
+        <th scope="col">Market Cap</th>
+      </tr>
+    </thead>
+
+{% for key,value in price.DISPLAY.items %}
+
+    <tbody>
+      <tr>
+        <td>{{ key }}</td>
+        <td>{{ value.USD.PRICE }}</td>
+        <td>{{ value.USD.HIGHDAY }}</td>
+        <td>{{ value.USD.LOWDAY }}</td>
+        <td>{{ value.USD.MKTCAP }}</td>
+      </tr>
+{% endfor %}
+    </tbody>
+  </table>
+  <br/>
+
+
+<!-- Latest News Articles Data here below-->
+
+<div class="container">
+    <div class="row">
+    {% for x in newsArticle.Data %}
+    <div class="col-sm">
+    <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ x.title }}</h5>
+              <p class="card-text">{{ x.body }}</p>
+              <a href="{{ x.url }}" class="btn btn-secondary">Read More...</a>
+            </div>
+        </div>
+    <br/>    
+    </div> 
+    {% endfor %}    
+    </div>  
+</div>
+
+    
+
+{% endblock %}
